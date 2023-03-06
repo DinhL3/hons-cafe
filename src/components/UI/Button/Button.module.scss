@@ -1,0 +1,53 @@
+@use "src/sass/abstracts/colors";
+
+.button {
+  display: inline-block;
+  text-align: center;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 30px;
+
+  &.light {
+    border: 1px solid colors.$dark-pink-2;
+    background: colors.$light-pink-1;
+    color: colors.$dark-pink-2;
+
+    &:hover,
+    &:active {
+      background: colors.$light-pink-2;
+      border-color: colors.$dark-pink-2;
+    }
+  }
+
+  &.dark {
+    border: 1px solid colors.$dark-pink-2;
+    background: colors.$dark-pink-2;
+    color: colors.$light-pink-1;
+
+    &:hover,
+    &:active {
+      background: colors.$dark-pink-3;
+      border-color: colors.$dark-pink-3;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+
+  &:disabled,
+  &:focus:disabled,
+  &:hover:disabled,
+  &:active:disabled {
+    background: #ccc;
+    border-color: #ccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.scss';
+import Navigation from './components/Navigation/Navigation';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Beans and beyond</h1>
-    </div>
+    <React.Fragment>
+      <Navigation />
+    </React.Fragment>
   );
 }
 
