@@ -1,5 +1,6 @@
 import styles from './Navigation.module.scss';
-import Button from '../UI/Button/Button';
+
+import LoginGroup from './LoginGroup';
 
 const Navigation = () => {
     return (
@@ -8,14 +9,7 @@ const Navigation = () => {
                 <li>MENU</li>
                 <li>ABOUT US</li>
             </ul>
-            <div className="login-group">
-                <Button type="button" className="light">
-                    Login
-                </Button>
-                <Button type="button" className="dark">
-                    Join now
-                </Button>
-            </div>
+            <LoginGroup />
         </nav>
     );
 }

@@ -1,7 +1,8 @@
 @use "src/sass/abstracts/colors";
+@use "src/sass/abstracts/mixins";
 
 .button {
-  display: inline-block;
+  @include mixins.flex-center;
   text-align: center;
   font: inherit;
   font-weight: 600;
@@ -9,6 +10,10 @@
   cursor: pointer;
   font-size: 1rem;
   border-radius: 30px;
+
+  svg {
+    margin-right: 0.5rem;
+  }
 
   &.light {
     border: 1px solid colors.$dark-pink-2;
