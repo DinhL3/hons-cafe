@@ -1,0 +1,51 @@
+@use "src/sass/abstracts/colors";
+@use "src/sass/abstracts/mixins";
+
+.nav {
+    @include mixins.flex-center;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    .wrapper {
+        padding: 1rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    ul {
+        list-style: none;
+        @include mixins.flex-center;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin-right: 2rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: colors.$dark-pink-3;
+
+            &:hover {
+                color: colors.$dark-pink-1;
+            }
+        }
+
+        .logo {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            margin-right: 2rem;
+            cursor: pointer;
+
+            img {
+                filter: brightness(0) saturate(100%) invert(25%) sepia(100%) saturate(6863%) hue-rotate(330deg) brightness(75%) contrast(86%);
+                height: auto;
+                width: 100%;
+            }
+        }
+    }
+
+
+}

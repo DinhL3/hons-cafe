@@ -1,5 +1,7 @@
+@use "src/sass/abstracts/mixins";
+
 .login-group {
-    display: flex;
+    @include mixins.flex-center;
 
     button:first-child {
         margin-right: 1rem;
