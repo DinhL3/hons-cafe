@@ -1,6 +1,6 @@
 import styles from './Navigation.module.scss';
 import coffeeLogo from "../../assets/icons/coffee.svg";
-import LoginGroup from './LoginGroup';
+import LeftNavGroup from './LeftNavGroup';
 
 const Navigation = () => {
     return (
@@ -12,9 +12,8 @@ const Navigation = () => {
                     </div>
                     <li>Menu</li>
                     <li>About us</li>
-                    <li>Orders</li>
                 </ul>
-                <LoginGroup />
+                <LeftNavGroup />
             </div>
         </nav>
     );

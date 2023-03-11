@@ -12,8 +12,10 @@
   border-radius: 30px;
   height: 2.5rem;
 
-  svg {
-    margin-right: 0.5rem;
+  &.has-icon {
+    svg {
+      margin-right: 0.5rem;
+    }
   }
 
   &.light {
