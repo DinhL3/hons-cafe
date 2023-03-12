@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styles from './Navigation.module.scss';
 
 import SideMenu from './SideMenu';
@@ -9,21 +9,11 @@ import Backdrop from '../UI/Backdrop/Backdrop';
 
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { useMediaQuery, createTheme } from '@mui/material';
-
-const theme = createTheme({
-    breakpoints: {
-        values: {
-            xs: 0,
-            sm: 768,
-            md: 992,
-            lg: 1200,
-        },
-    },
-});
+import { MediaQueryContext } from '../../contexts/media-query-context';
 
 const Navigation = () => {
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const { isSmallScreen } = useContext(MediaQueryContext);
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleMenuOpen = () => {
