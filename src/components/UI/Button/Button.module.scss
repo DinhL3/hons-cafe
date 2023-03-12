@@ -12,10 +12,14 @@
   border-radius: 30px;
   height: 2.5rem;
 
-  &.has-icon {
+  &.text-and-icon {
     svg {
       margin-right: 0.5rem;
     }
+  }
+
+  &.tablet {
+    padding: 0 0.5rem;
   }
 
   &.light {

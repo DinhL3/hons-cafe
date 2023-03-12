@@ -1,5 +1,7 @@
 @use "src/sass/abstracts/colors";
 @use "src/sass/abstracts/mixins";
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
 
 .nav {
     @include mixins.flex-center;
@@ -14,39 +16,16 @@
         width: 100%;
     }
 
-    ul {
-        list-style: none;
+    .right-nav-group {
         @include mixins.flex-center;
-        margin: 0;
-        padding: 0;
 
-        li {
-            color: colors.$dark-pink-3;
-            margin-right: 2rem;
-            font-weight: 600;
-            font-size: 1rem;
+        .burger-icon {
+            color: colors.$dark-pink-4;
             cursor: pointer;
-            user-select: none;
 
             &:hover {
-                color: colors.$dark-pink-1;
-            }
-        }
-
-        .logo {
-            width: 2.5rem;
-            height: 2.5rem;
-            display: flex;
-            margin-right: 2rem;
-            cursor: pointer;
-
-            img {
-                filter: brightness(0) saturate(100%) invert(25%) sepia(100%) saturate(6863%) hue-rotate(330deg) brightness(75%) contrast(86%);
-                height: auto;
-                width: 100%;
+                color: colors.$dark-pink-2;
             }
         }
     }
-
-
 }

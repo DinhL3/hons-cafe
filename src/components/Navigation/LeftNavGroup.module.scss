@@ -1,9 +1,15 @@
 @use "src/sass/abstracts/mixins";
 
-.login-group {
+.left-nav-group {
     @include mixins.flex-center;
 
     button:first-child {
         margin-right: 1rem;
+    }
+
+    &.tablet {
+        button:first-child {
+            margin-right: 0.5rem;
+        }
     }
 }

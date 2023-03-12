@@ -1,0 +1,19 @@
+.coffee-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    margin-right: 2rem;
+    cursor: pointer;
+
+    img {
+        filter: brightness(0) saturate(100%) invert(25%) sepia(100%) saturate(6863%) hue-rotate(330deg) brightness(75%) contrast(86%);
+        height: auto;
+        width: 100%;
+    }
+
+    &.tablet {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
