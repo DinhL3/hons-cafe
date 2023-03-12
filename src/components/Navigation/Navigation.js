@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom'
 import styles from './Navigation.module.scss';
 
 import SideMenu from './SideMenu';
 import LeftNavGroup from './LeftNavGroup';
 import NavLinks from './NavLinks';
 import CoffeeLogo from './CoffeeLogo';
+import Backdrop from '../UI/Backdrop/Backdrop';
 
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -20,7 +22,6 @@ const theme = createTheme({
         },
     },
 });
-
 
 const Navigation = () => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -42,6 +43,7 @@ const Navigation = () => {
 
     return (
         <nav className={`${styles.nav}`}>
+            {isSmallScreen && isMenuOpen && <Backdrop onClose={handleMenuClose} />}
             {isSmallScreen && <SideMenu isSmallScreen={isSmallScreen} isMenuOpen={isMenuOpen} handleMenuClose={handleMenuClose} />}
             <div className={styles.wrapper}>
                 <div className={styles['right-nav-group']}>
