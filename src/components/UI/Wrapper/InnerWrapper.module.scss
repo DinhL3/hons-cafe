@@ -1,0 +1,23 @@
+@use "src/sass/abstracts/colors";
+@use "src/sass/abstracts/mixins";
+
+.inner-wrapper {
+    position: relative;
+
+    &.flex-center {
+        @include mixins.flex-center;
+    }
+
+    &.flex-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &.small {
+        flex-direction: column;
+    }
+
+    width: 100%;
+    @include mixins.max-width-lg;
+}

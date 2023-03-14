@@ -12,7 +12,7 @@
         display: flex;
         justify-content: space-between;
         padding: 1rem 1rem;
-        max-width: 1200px;
+        @include mixins.max-width-lg;
         width: 100%;
     }
 

@@ -4,7 +4,7 @@ const NavLinks = (props) => {
     const classNames = [styles['nav-links']];
 
     if (props.isSmallScreen) {
-        classNames.push(styles['tablet']);
+        classNames.push(styles['small']);
     }
 
     if (props.className) {

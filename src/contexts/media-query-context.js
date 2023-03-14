@@ -14,13 +14,17 @@ const theme = createTheme({
 
 const MediaQueryContext = createContext({
     isSmallScreen: false,
+    isMediumScreen: false,
+    isLargeScreen: false,
 });
 
 const MediaQueryProvider = ({ children }) => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+    const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
-        <MediaQueryContext.Provider value={{ isSmallScreen }}>
+        <MediaQueryContext.Provider value={{ isSmallScreen, isMediumScreen, isLargeScreen }}>
             {children}
         </MediaQueryContext.Provider>
     );

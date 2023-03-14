@@ -1,0 +1,11 @@
+@use "src/sass/abstracts/colors";
+@use "src/sass/abstracts/mixins";
+
+.outer-wrapper {
+    width: 100vw;
+    @include mixins.flex-center;
+
+    &.light-pink {
+        background-color: colors.$light-pink-1;
+    }
+}

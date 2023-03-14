@@ -18,7 +18,7 @@
     }
   }
 
-  &.tablet {
+  &.small {
     padding: 0 0.5rem;
   }
 
@@ -35,14 +35,14 @@
   }
 
   &.dark {
-    border: 1px solid colors.$dark-pink-2;
-    background: colors.$dark-pink-2;
+    border: 1px solid colors.$dark-pink-1;
+    background: colors.$dark-pink-1;
     color: colors.$light-pink-1;
 
     &:hover,
     &:active {
-      background: colors.$dark-pink-3;
-      border-color: colors.$dark-pink-3;
+      background: colors.$dark-pink-2;
+      border-color: colors.$dark-pink-2;
     }
   }
 

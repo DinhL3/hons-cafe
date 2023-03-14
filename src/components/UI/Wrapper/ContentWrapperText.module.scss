@@ -1,0 +1,40 @@
+@use "src/sass/abstracts/mixins";
+@use "src/sass/abstracts/colors";
+
+.content-wrapper-text {
+    max-width: 500px;
+    padding: 1rem;
+
+    h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.25rem;
+    }
+
+    &.medium,
+    &.small {
+        h1 {
+            font-size: 3rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+    }
+
+    &.small {
+        text-align: center;
+        position: absolute;
+        max-width: 100vw;
+        @include mixins.flex-center-column;
+        color: white;
+        z-index: 1;
+
+        h1 {
+            color: colors.$light-pink-4;
+        }
+    }
+}

@@ -1,13 +1,13 @@
 @use "src/sass/abstracts/mixins";
 
-.left-nav-group {
+.corner-nav-group {
     @include mixins.flex-center;
 
     button:first-child {
         margin-right: 1rem;
     }
 
-    &.tablet {
+    &.small {
         button:first-child {
             margin-right: 0.5rem;
         }

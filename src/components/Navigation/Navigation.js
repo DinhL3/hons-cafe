@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import styles from './Navigation.module.scss';
 
 import SideMenu from './SideMenu';
-import LeftNavGroup from './LeftNavGroup';
+import CornerNavGroup from './CornerNavGroup';
 import NavLinks from './NavLinks';
 import CoffeeLogo from './CoffeeLogo';
 import Backdrop from '../UI/Backdrop/Backdrop';
@@ -40,7 +40,7 @@ const Navigation = () => {
                     <CoffeeLogo isSmallScreen={isSmallScreen} />
                     {!isSmallScreen && <NavLinks />}
                 </div>
-                <LeftNavGroup isSmallScreen={isSmallScreen} />
+                <CornerNavGroup isSmallScreen={isSmallScreen} />
             </div>
         </nav>
     );
