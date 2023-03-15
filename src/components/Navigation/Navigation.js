@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+import { Link } from "react-router-dom";
 import styles from './Navigation.module.scss';
 
 import SideMenu from './SideMenu';
@@ -38,7 +39,7 @@ const Navigation = () => {
                 <div className={styles['right-nav-group']}>
                     {isSmallScreen && <MenuIcon className={styles['burger-icon']} onClick={handleMenuOpen} />}
                     <CoffeeLogo isSmallScreen={isSmallScreen} />
-                    {!isSmallScreen && <NavLinks />}
+                    {!isSmallScreen && <NavLinks handleMenuClose={handleMenuClose} />}
                 </div>
                 <CornerNavGroup isSmallScreen={isSmallScreen} />
             </div>

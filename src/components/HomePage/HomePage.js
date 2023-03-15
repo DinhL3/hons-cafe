@@ -6,7 +6,7 @@ import Button from '../UI/Button/Button';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import coffee1 from "../../assets/img/coffee1.jpg";
 
-const LandingPage = () => {
+const HomePage = () => {
 
     return (
         <div >
@@ -22,4 +22,4 @@ const LandingPage = () => {
     );
 }
 
-export default LandingPage;
+export default HomePage;

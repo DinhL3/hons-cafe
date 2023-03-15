@@ -1,6 +1,12 @@
 import styles from './NavLinks.module.scss';
+import { Link } from "react-router-dom";
+
 
 const NavLinks = (props) => {
+    const handleClick = () => {
+        props.handleMenuClose();
+    }
+
     const classNames = [styles['nav-links']];
 
     if (props.isSmallScreen) {
@@ -15,7 +21,7 @@ const NavLinks = (props) => {
     return (
         <ul className={classNames.join(' ')}>
             <li>Menu</li>
-            <li>About us</li>
+            <li><Link to="/about" onClick={handleClick}>About us</Link></li>
         </ul>
     );
 }

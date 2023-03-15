@@ -14,6 +14,10 @@
         align-items: center;
     }
 
+    &.flex-center-column {
+        @include mixins.flex-center-column
+    }
+
     &.small {
         flex-direction: column;
     }

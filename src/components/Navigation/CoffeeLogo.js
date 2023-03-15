@@ -1,7 +1,13 @@
 import coffeeLogo from "../../assets/icons/coffee.svg";
 import styles from './CoffeeLogo.module.scss';
+import { Link } from "react-router-dom";
+
 
 const CoffeeLogo = (props) => {
+    const handleClick = () => {
+        props.handleMenuClose();
+    }
+
     const classNames = [styles['coffee-logo']];
 
     if (props.isSmallScreen) {
@@ -14,9 +20,9 @@ const CoffeeLogo = (props) => {
     }
 
     return (
-        <div className={classNames.join(' ')}>
+        <Link to="/" className={classNames.join(' ')}>
             <img src={coffeeLogo} alt="coffee logo" />
-        </div>
+        </Link>
     );
 };
 
