@@ -3,7 +3,6 @@ import styles from './DrinkCard.module.scss';
 import dummy from "../../assets/img/dummy1.png";
 import Button from '../UI/Button/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { MediaQueryContext } from '../../contexts/media-query-context';
 
 
 const DrinkCard = ({ drink }) => {

@@ -1,10 +1,10 @@
 .not-found {
     h1 {
         padding-top: 1rem;
+        font-family: Source Sans Pro;
     }
 
     img {
-        filter: brightness(0) saturate(100%) invert(25%) sepia(100%) saturate(6863%) hue-rotate(330deg) brightness(70%) contrast(86%) opacity(0.2);
         max-width: 200px;
         margin-bottom: 1.5rem;
     }

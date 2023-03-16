@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import ContentWrapper from '../UI/Wrapper/ContentWrapper';
 import axios from 'axios';
 import DrinkCard from './DrinkCard';
+import NotFound from '../NotFound/NotFound';
+import Spinner from '../UI/Spinner/Spinner';
 
 const DrinksMenu = () => {
     const [hotDrinks, setHotDrinks] = useState([]);
@@ -20,8 +22,8 @@ const DrinksMenu = () => {
             axios.get(coldDrinksAPI)
         ])
             .then(axios.spread((hotResponse, icedResponse) => {
-                setHotDrinks(hotResponse.data.slice(0, 3));
-                setcoldDrinks(icedResponse.data.slice(0, 3));
+                setHotDrinks(hotResponse.data);
+                setcoldDrinks(icedResponse.data);
                 setIsLoading(false);
             }))
             .catch(error => {
@@ -31,11 +33,11 @@ const DrinksMenu = () => {
     }, []);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Spinner loading={isLoading} />;
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <NotFound error={error.message}></NotFound>;
     }
 
     return (
