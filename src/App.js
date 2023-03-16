@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 import { MediaQueryProvider } from './contexts/media-query-context';
 import AboutUs from './components/AboutUs/AboutUs';
 import NotFound from './components/NotFound/NotFound';
+import DrinksMenu from './components/DrinksMenu/DrinksMenu';
 
 function BasicLayout() {
   return (
@@ -13,7 +14,7 @@ function BasicLayout() {
       <React.Fragment>
         <Navigation />
         <Outlet />
-        <Footer />
+        {/* <Footer /> */}
       </React.Fragment>
     </MediaQueryProvider>
   )
@@ -25,6 +26,7 @@ function App() {
       <Route path="/" element={<BasicLayout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutUs />} />
+        <Route path="menu" element={<DrinksMenu />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

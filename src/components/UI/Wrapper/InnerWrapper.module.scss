@@ -4,8 +4,13 @@
 .inner-wrapper {
     position: relative;
 
+    &.flex {
+        display: flex;
+    }
+
     &.flex-center {
         @include mixins.flex-center;
+        flex-wrap: wrap;
     }
 
     &.flex-between {

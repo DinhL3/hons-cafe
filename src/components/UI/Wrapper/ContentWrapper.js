@@ -3,7 +3,7 @@ import OuterWrapper from "./OuterWrapper";
 
 const ContentWrapper = (props) => {
     return (
-        <OuterWrapper theme={props.theme}>
+        <OuterWrapper theme={props.theme} margin={props.padding}>
             <InnerWrapper flex={props.flex}>
                 {props.children}
             </InnerWrapper>

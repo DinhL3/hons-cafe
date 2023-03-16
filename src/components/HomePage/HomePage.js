@@ -1,3 +1,4 @@
+import React from 'react';
 import ContentWrapper from '../UI/Wrapper/ContentWrapper';
 import ContentWrapperText from '../UI/Wrapper/ContentWrapperText';
 import ContentWrapperImage from '../UI/Wrapper/ContentWrapperImage';
@@ -9,7 +10,7 @@ import coffee1 from "../../assets/img/coffee1.jpg";
 const HomePage = () => {
 
     return (
-        <div >
+        <React.Fragment>
             <ContentWrapper theme={'light-pink'} flex={'flex-between'}>
                 <ContentWrapperText>
                     <h1>Fresh Coffee Delivered</h1>
@@ -18,7 +19,7 @@ const HomePage = () => {
                 </ContentWrapperText>
                 <ContentWrapperImage src={coffee1} alt="Latte cup" />
             </ContentWrapper >
-        </div >
+        </React.Fragment>
     );
 }
 

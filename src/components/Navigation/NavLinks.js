@@ -20,7 +20,7 @@ const NavLinks = (props) => {
 
     return (
         <ul className={classNames.join(' ')}>
-            <li>Menu</li>
+            <li><Link to="/menu" onClick={handleClick}>Menu</Link></li>
             <li><Link to="/about" onClick={handleClick}>About us</Link></li>
         </ul>
     );
