@@ -12,6 +12,10 @@
   border-radius: 30px;
   height: 2.5rem;
 
+  a {
+    @include mixins.flex-center;
+  }
+
   &.text-and-icon {
     svg {
       margin-right: 0.5rem;
