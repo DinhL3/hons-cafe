@@ -1,11 +1,11 @@
+import { useContext } from 'react';
+import { MenuContext } from '../../contexts/menu-context';
+
 import styles from './NavLinks.module.scss';
 import { Link } from "react-router-dom";
 
-
 const NavLinks = (props) => {
-    const handleClick = () => {
-        props.handleMenuClose();
-    }
+    const { handleMenuClose } = useContext(MenuContext);
 
     const classNames = [styles['nav-links']];
 
@@ -20,8 +20,8 @@ const NavLinks = (props) => {
 
     return (
         <ul className={classNames.join(' ')}>
-            <li><Link to="/menu" onClick={handleClick}>Menu</Link></li>
-            <li><Link to="/about" onClick={handleClick}>About us</Link></li>
+            <li><Link to="/menu" onClick={handleMenuClose}>Menu</Link></li>
+            <li><Link to="/about" onClick={handleMenuClose}>About us</Link></li>
         </ul>
     );
 }

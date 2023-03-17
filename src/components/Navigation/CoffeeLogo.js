@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 
 const CoffeeLogo = (props) => {
-    const handleClick = () => {
-        props.handleMenuClose();
-    }
+    // const handleClick = () => {
+    //     props.handleMenuClose();
+    // }
 
     const classNames = [styles['coffee-logo']];
 

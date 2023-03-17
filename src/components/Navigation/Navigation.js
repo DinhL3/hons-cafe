@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link } from "react-router-dom";
 import styles from './Navigation.module.scss';
 
 import SideMenu from './SideMenu';
@@ -11,30 +10,22 @@ import Backdrop from '../UI/Backdrop/Backdrop';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { MediaQueryContext } from '../../contexts/media-query-context';
+import { MenuContext } from '../../contexts/menu-context';
 
 const Navigation = () => {
     const { isSmallScreen } = useContext(MediaQueryContext);
-
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const handleMenuOpen = () => {
-        setIsMenuOpen(true);
-    };
-
-    const handleMenuClose = () => {
-        setIsMenuOpen(false);
-    };
+    const { isMenuOpen, handleMenuOpen, handleMenuClose } = useContext(MenuContext);
 
     useEffect(() => {
         if (!isSmallScreen) {
-            setIsMenuOpen(false);
+            handleMenuClose();
         }
-    }, [isSmallScreen]);
+    }, [isSmallScreen, handleMenuClose]);
 
     return (
         <nav className={`${styles.nav}`}>
             {isSmallScreen && isMenuOpen && <Backdrop onClose={handleMenuClose} />}
-            {isSmallScreen && <SideMenu isSmallScreen={isSmallScreen} isMenuOpen={isMenuOpen} handleMenuClose={handleMenuClose} />}
+            {isSmallScreen && <SideMenu isSmallScreen={isSmallScreen} isMenuOpen={isMenuOpen} />}
             <div className={styles.wrapper}>
                 <div className={styles['right-nav-group']}>
                     {isSmallScreen && <MenuIcon className={styles['burger-icon']} onClick={handleMenuOpen} />}

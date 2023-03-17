@@ -3,7 +3,7 @@ import { BeatLoader } from 'react-spinners';
 
 const Spinner = (props) => {
     return (
-        <ContentWrapper padding='p-top-2' flex="flex-center">
+        <ContentWrapper padding='p-top-bottom-2' flex="flex-center">
             <BeatLoader
                 color="#FF758F"
                 loading={props.loading}

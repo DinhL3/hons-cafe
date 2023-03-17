@@ -23,21 +23,29 @@
   }
 
   &.light {
-    border: 1px solid colors.$dark-pink-2;
+    border: 1px solid colors.$dark-pink-1;
     background: colors.$light-pink-1;
-    color: colors.$dark-pink-2;
+    color: colors.$dark-pink-1;
+
+    a {
+      color: colors.$dark-pink-1;
+    }
 
     &:hover,
     &:active {
       background: colors.$light-pink-2;
-      border-color: colors.$dark-pink-2;
+      border-color: colors.$dark-pink-1;
     }
   }
 
   &.dark {
     border: 1px solid colors.$dark-pink-1;
     background: colors.$dark-pink-1;
-    color: colors.$light-pink-1;
+    color: white;
+
+    a {
+      color: white;
+    }
 
     &:hover,
     &:active {

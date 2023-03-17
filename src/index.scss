@@ -1,8 +1,9 @@
 @use "src/sass/abstracts/colors";
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Satisfy:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap");
 
 * {
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 body {
@@ -19,7 +20,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Satisfy', cursive;
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: 700;
   color: colors.$dark-pink-1;
   margin-bottom: 1rem;
@@ -36,6 +37,7 @@ p {
 
 a {
   text-decoration: none;
+  color: colors.$dark-pink-2;
 }
 
 code {

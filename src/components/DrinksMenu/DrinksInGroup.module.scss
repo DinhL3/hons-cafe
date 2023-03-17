@@ -1,0 +1,32 @@
+@use "src/sass/abstracts/colors";
+
+.filter {
+    label {
+        margin-right: 0.5rem;
+        font-size: 1rem;
+    }
+
+    select {
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid colors.$light-pink-3;
+        font-size: 1rem;
+        padding: 0.5rem;
+        width: 100%;
+        cursor: pointer;
+
+        &:focus,
+        &:hover {
+            outline: none;
+            border-bottom-color: colors.$dark-pink-1;
+        }
+
+        &::-ms-expand {
+            display: none;
+        }
+    }
+
+    &:first-child {
+        margin-right: 2rem;
+    }
+}

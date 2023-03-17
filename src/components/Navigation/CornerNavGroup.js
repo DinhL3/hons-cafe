@@ -10,7 +10,7 @@ const CornerNavGroup = (props) => {
     return (
         <div className={`${styles['corner-nav-group']} ${isSmallScreen ? styles.small : ''}`}>
             <Button type="button" className={`light ${isSmallScreen ? 'small' : 'text-and-icon'}`}>
-                <PersonIcon />{!isSmallScreen && "Login / Register"}
+                <PersonIcon />{!isSmallScreen && "Login"}
             </Button>
             <Button type="button" className={`dark ${isSmallScreen ? 'small' : ''}`}>
                 <ShoppingCartIcon />
