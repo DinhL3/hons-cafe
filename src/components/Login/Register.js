@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
-
 import UserForm from './UserForm';
 
-function Login() {
+function Register() {
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Logging in with email: ${email} and password: ${password}`);
+        console.log(`Registering with email: ${email} and password: ${password}`);
     };
 
     const [email, setEmail] = useState('');
@@ -14,7 +13,7 @@ function Login() {
 
     return (
         <UserForm
-            type="login"
+            type="register"
             handleSubmit={handleSubmit}
             email={email}
             setEmail={setEmail}
@@ -24,4 +23,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

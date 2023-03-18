@@ -11,8 +11,6 @@ import NotFound from '../NotFound/NotFound';
 import { Link } from "react-router-dom";
 
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { spacing } from '@mui/system';
-
 
 const DrinksMenu = () => {
     const [hotDrinks, setHotDrinks] = useState([]);
@@ -67,7 +65,7 @@ const DrinksMenu = () => {
                 ))}
             </ContentWrapper>
             <ContentWrapper theme='light-pink' padding='p-top-2' flex='flex-center'>
-                <Button className="light"><Link to="hot">View all hot drinks ({hotDrinks.length})</Link></Button>
+                <Link to="hot"><Button className="light">View all hot drinks ({hotDrinks.length})</Button></Link>
             </ContentWrapper>
             <ContentWrapper theme='light-pink' padding='p-top-2' flex='flex-center'>
                 <h1>Popular Cold Drinks</h1>
@@ -78,7 +76,7 @@ const DrinksMenu = () => {
                 ))}
             </ContentWrapper>
             <ContentWrapper theme='light-pink' padding='p-top-bottom-2' flex='flex-center'>
-                <Button className="light"><Link to="cold">View all cold drinks ({coldDrinks.length})</Link></Button>
+                <Link to="cold"><Button className="light">View all cold drinks ({coldDrinks.length})</Button></Link>
             </ContentWrapper>
         </React.Fragment>
     );
