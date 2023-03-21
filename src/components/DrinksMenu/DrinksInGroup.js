@@ -23,8 +23,8 @@ const DrinksInGroup = () => {
     const [error, setError] = useState(null);
     const [sortType, setSortType] = useState('default');
     const [filterType, setFilterType] = useState('all');
-    const hotDrinksAPI = 'http://localhost:5000/hotDrinks';
-    const coldDrinksAPI = 'http://localhost:5000/coldDrinks';
+    const hotDrinksAPI = 'http://localhost:5000/api/drinks/hot';
+    const coldDrinksAPI = 'http://localhost:5000/api/drinks/cold';
 
     useEffect(() => {
         setIsLoading(true);
@@ -36,7 +36,7 @@ const DrinksInGroup = () => {
         }
         axios.get(apiURL)
             .then(response => {
-                setDrinks(response.data);
+                setDrinks(response.data.drinks);
                 setIsLoading(false);
             })
             .catch(error => {

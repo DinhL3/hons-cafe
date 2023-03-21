@@ -18,8 +18,8 @@ const DrinksMenu = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const hotDrinksAPI = 'http://localhost:5000/hotDrinks';
-    const coldDrinksAPI = 'http://localhost:5000/coldDrinks';
+    const hotDrinksAPI = 'http://localhost:5000/api/drinks/hot';
+    const coldDrinksAPI = 'http://localhost:5000/api/drinks/cold';
 
     useEffect(() => {
         setIsLoading(true);
@@ -28,9 +28,9 @@ const DrinksMenu = () => {
             axios.get(hotDrinksAPI),
             axios.get(coldDrinksAPI)
         ])
-            .then(axios.spread((hotResponse, icedResponse) => {
-                setHotDrinks(hotResponse.data);
-                setcoldDrinks(icedResponse.data);
+            .then(axios.spread((hotResponse, coldResponse) => {
+                setHotDrinks(hotResponse.data.drinks);
+                setcoldDrinks(coldResponse.data.drinks);
                 setIsLoading(false);
             }))
             .catch(error => {
