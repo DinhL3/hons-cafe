@@ -17,9 +17,9 @@ const HomePage = () => {
                 <ContentWrapperText>
                     <h1>Fresh Coffee Delivered</h1>
                     <p>Our coffee shop provides you with a selection of expertly crafted coffee blends, roasted to perfection. Indulge in the comfort of your home and experience the perfect cup every time.</p>
-                    <Button className="dark text-and-icon">
-                        <Link to="/menu"><DeliveryDiningIcon />Order now</Link>
-                    </Button>
+                    <Link to="/menu"><Button className="dark text-and-icon">
+                        <DeliveryDiningIcon />Order now
+                    </Button></Link>
                 </ContentWrapperText>
                 <ContentWrapperImage src={coffee1} alt="Latte cup" />
             </ContentWrapper >

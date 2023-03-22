@@ -1,5 +1,5 @@
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, Navigate } from "react-router-dom";
-import { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../contexts/user-context';
 import Button from "../UI/Button/Button";
 import styles from "./UserForm.module.scss";
@@ -38,39 +38,41 @@ function Login() {
     }, [setErrorMessage, email]);
 
     return (
-        <div className={styles["user-form"]}>
+        <React.Fragment>
             {user && (
                 <Navigate to="/" replace={true} />
             )}
-            <h1>Log in with your account</h1>
-            <p className={styles.error}>{errorMessage}</p>
-            <form onSubmit={handleSubmit}>
-                <label className={emailError ? styles.error : ""}>
-                    Email
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        onBlur={validateEmail}
-                    />
-                    {emailError && <p>{emailError}</p>}
-                </label>
-                <label>
-                    Password
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
-                    />
-                </label>
-                <Button type="submit" className="dark" disabled={!isFormValid || isLoading}>
-                    Log in
-                </Button>
-            </form>
-            <p>
-                Need an account? <Link to="/register">Register</Link>
-            </p>
-        </div>
+            <div className={styles["user-form"]}>
+                <h1>Log in with your account</h1>
+                <p className={styles.error}>{errorMessage}</p>
+                <form onSubmit={handleSubmit}>
+                    <label className={emailError ? styles.error : ""}>
+                        Email
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                            onBlur={validateEmail}
+                        />
+                        {emailError && <p>{emailError}</p>}
+                    </label>
+                    <label>
+                        Password
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                    </label>
+                    <Button type="submit" className="dark" disabled={!isFormValid || isLoading}>
+                        Log in
+                    </Button>
+                </form>
+                <p>
+                    Need an account? <Link to="/register">Register</Link>
+                </p>
+            </div>
+        </React.Fragment>
     );
 }
 
