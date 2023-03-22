@@ -3,6 +3,7 @@
 
 .card {
     @include mixins.flex-center-column;
+    position: relative;
     background-color: #fff;
     border: 2px solid colors.$light-pink-2;
     border-radius: 1.5rem;
@@ -40,6 +41,20 @@
     .price {
         font-weight: bold;
         margin-bottom: 20px;
+    }
+
+    .message {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: colors.$dark-pink-1;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 0.8rem;
+        text-align: center;
+        z-index: 1;
     }
 
 }
