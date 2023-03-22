@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import Button from "../UI/Button/Button";
 import styles from "./UserForm.module.scss";
+import { UserContext } from "../../contexts/user-context";
 
 const UserForm = ({
     type,
@@ -13,12 +14,13 @@ const UserForm = ({
     password,
     setPassword,
 }) => {
-    const [userNameError, setUserNameError] = useState("");
-    const [emailError, setEmailError] = useState("");
+
 
     const formTitle = type === "login" ? "Welcome back" : "Create an account";
     const submitButtonText = type === "login" ? "Login" : "Register";
     const hasUserNameInputField = type === "register";
+
+    const { isLoading, errorMessage, setErrorMessage } = useContext(UserContext);
 
     const validateEmail = () => {
         const emailRegex = /\S+@\S+\.\S+/;
@@ -52,11 +54,19 @@ const UserForm = ({
         );
     };
 
+    // Clear error message from ctx when re-render
+    useEffect(() => {
+        setErrorMessage("");
+    }, [setErrorMessage, type, email]);
+
     return (
         <div className={styles["user-form"]}>
             <h1>{formTitle}</h1>
             {type === "login" && (
                 <p className={styles.subtitle}>Log in with your account below</p>
+            )}
+            {type === "register" && errorMessage && (
+                <p className={styles.error}>{errorMessage}</p>
             )}
             <form onSubmit={handleSubmit}>
                 {hasUserNameInputField && (
@@ -89,7 +99,7 @@ const UserForm = ({
                         onChange={(event) => setPassword(event.target.value)}
                     />
                 </label>
-                <Button type="submit" className="dark" disabled={!isFormValid()}>
+                <Button type="submit" className="dark" disabled={!isFormValid || isLoading}>
                     {submitButtonText}
                 </Button>
             </form>

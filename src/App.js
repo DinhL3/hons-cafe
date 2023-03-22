@@ -5,6 +5,7 @@ import HomePage from './components/HomePage/HomePage';
 // import Footer from './components/Footer/Footer';
 import { MediaQueryProvider } from './contexts/media-query-context';
 import { MenuProvider } from './contexts/menu-context';
+import UserProvider from './contexts/user-context';
 import AboutUs from './components/AboutUs/AboutUs';
 import NotFound from './components/NotFound/NotFound';
 import DrinksMenu from './components/DrinksMenu/DrinksMenu';
@@ -14,19 +15,22 @@ import Register from './components/Login/Register';
 
 function BasicLayout() {
   return (
-    <MediaQueryProvider>
-      <MenuProvider>
-        <React.Fragment>
-          <Navigation />
-          <Outlet />
-          {/* <Footer /> */}
-        </React.Fragment>
-      </MenuProvider>
-    </MediaQueryProvider>
+    <UserProvider>
+      <MediaQueryProvider>
+        <MenuProvider>
+          <React.Fragment>
+            <Navigation />
+            <Outlet />
+            {/* <Footer /> */}
+          </React.Fragment>
+        </MenuProvider>
+      </MediaQueryProvider>
+    </UserProvider>
   )
 }
 
 function App() {
+
   return (
     <Routes>
       <Route path="/" element={<BasicLayout />}>
