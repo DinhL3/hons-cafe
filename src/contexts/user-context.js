@@ -14,32 +14,32 @@ const UserProvider = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
-    // const fetchUser = async (token) => {
-    //     try {
-    //         setIsLoading(true);
-    //         const response = await axios.get("http://localhost:5000/api/users/me", {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`,
-    //             },
-    //         });
-    //         setIsLoading(false);
-    //         setUser(response.data);
-    //     } catch (error) {
-    //         setIsLoading(false);
-    //         if (error.response && error.response.data) {
-    //             setErrorMessage(error.response.data.message);
-    //         } else {
-    //             setErrorMessage("Something went wrong. Please try again later.");
-    //         }
-    //     }
-    // };
+    const fetchUser = async (token) => {
+        try {
+            setIsLoading(true);
+            const response = await axios.get("http://localhost:5000/api/users/me", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setIsLoading(false);
+            setUser(response.data);
+        } catch (error) {
+            setIsLoading(false);
+            if (error.response && error.response.data) {
+                setErrorMessage(error.response.data.message);
+            } else {
+                setErrorMessage("Something went wrong. Please try again later.");
+            }
+        }
+    };
 
-    // useEffect(() => {
-    //     const token = localStorage.getItem("token");
-    //     if (token) {
-    //         fetchUser(token);
-    //     }
-    // }, []);
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            fetchUser(token);
+        }
+    }, []);
 
     const registerUser = async (userName, email, password) => {
         try {
@@ -83,12 +83,18 @@ const UserProvider = (props) => {
         }
     };
 
+    const logoutUser = () => {
+        setUser(null);
+        localStorage.removeItem("token");
+    };
+
     const userContextValue = {
         user,
         isLoading,
         errorMessage,
         registerUser,
         loginUser,
+        logoutUser,
         setErrorMessage,
     };
 
