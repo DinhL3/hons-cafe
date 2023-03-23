@@ -5,6 +5,7 @@ import HomePage from './components/HomePage/HomePage';
 // import Footer from './components/Footer/Footer';
 import { MediaQueryProvider } from './contexts/media-query-context';
 import { MenuProvider } from './contexts/menu-context';
+import { CartProvider } from './contexts/cart-context';
 import UserProvider from './contexts/user-context';
 
 import AboutUs from './components/AboutUs/AboutUs';
@@ -18,15 +19,17 @@ import Profile from './components/Profile/Profile';
 function BasicLayout() {
   return (
     <UserProvider>
-      <MediaQueryProvider>
-        <MenuProvider>
-          <React.Fragment>
-            <Navigation />
-            <Outlet />
-            {/* <Footer /> */}
-          </React.Fragment>
-        </MenuProvider>
-      </MediaQueryProvider>
+      <CartProvider>
+        <MediaQueryProvider>
+          <MenuProvider>
+            <React.Fragment>
+              <Navigation />
+              <Outlet />
+              {/* <Footer /> */}
+            </React.Fragment>
+          </MenuProvider>
+        </MediaQueryProvider>
+      </CartProvider>
     </UserProvider>
   )
 }

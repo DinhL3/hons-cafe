@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/user-context';
+import { CartContext } from '../../contexts/cart-context';
 
 import styles from './DrinkCard.module.scss';
 import dummy from "../../assets/img/dummy1.png";
@@ -8,21 +9,29 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 
 const DrinkCard = ({ drink }) => {
-    const { name, description, price, image } = drink;
+    const { name, description, price, image, _id: drinkId } = drink;
     const { user } = useContext(UserContext);
+    const { addToCart } = useContext(CartContext);
     const [cartMessage, setCartMessage] = useState(null);
 
-    const handleAddToCartClick = () => {
+    const handleAddToCartClick = async () => {
         if (!user) {
             setCartMessage('Please log in');
             setTimeout(() => {
                 setCartMessage(null);
             }, 2000);
         } else {
-            setCartMessage('Item added to cart');
-            setTimeout(() => {
-                setCartMessage(null);
-            }, 2000);
+            try {
+                await addToCart(drinkId);
+                setCartMessage('Item added to cart');
+            } catch (error) {
+                console.log(error);
+                setCartMessage('Failed to add item to cart');
+            } finally {
+                setTimeout(() => {
+                    setCartMessage(null);
+                }, 2000);
+            }
         }
     }
 
