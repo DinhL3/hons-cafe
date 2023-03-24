@@ -3,13 +3,19 @@
 .corner-nav-group {
     @include mixins.flex-center;
 
-    button:first-child {
+    a:first-child {
         margin-right: 1rem;
     }
 
     &.small {
-        button:first-child {
+        a:first-child {
             margin-right: 0.5rem;
+
+            button {
+                padding: 0 0.5rem;
+            }
         }
+
+
     }
 }

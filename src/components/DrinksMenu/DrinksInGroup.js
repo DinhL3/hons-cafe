@@ -114,7 +114,7 @@ const DrinksInGroup = () => {
             </ContentWrapper>
             <ContentWrapper theme='light-pink' flex='flex-center-x-top-y'>
                 {sortedDrinks().map(drink => (
-                    <DrinkCard key={drink.id} drink={drink} />
+                    <DrinkCard key={drink._id} drink={drink} />
                 ))}
             </ContentWrapper>
         </React.Fragment >

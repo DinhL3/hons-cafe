@@ -1,0 +1,97 @@
+@use "src/sass/abstracts/colors";
+@use "src/sass/abstracts/mixins";
+
+.card {
+    @include mixins.flex-between;
+
+    border: 2px solid colors.$light-pink-2;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    background-color: white;
+    margin-bottom: 1rem;
+
+    .image-and-info {
+        display: flex;
+        margin-right: 1rem;
+
+        .image {
+            max-height: 100px;
+            object-fit: cover;
+            border-radius: 99%;
+            margin-right: 2rem;
+        }
+
+        .info {
+            min-width: 15rem;
+        }
+    }
+
+    .quantity-and-remove {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        height: 100px;
+
+        .quantity-controls {
+            @include mixins.flex-center;
+
+            span {
+                font-size: 1rem;
+                margin: 0 1rem;
+            }
+
+            button {
+                border-radius: 99%;
+                width: 2.5rem;
+                padding: 0;
+            }
+        }
+
+        .remove {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 2rem;
+            color: grey;
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
+
+    &.xsmall {
+        max-width: 95vw;
+
+        h3 {
+            font-size: 1rem;
+        }
+
+        .image-and-info {
+            margin-right: 1rem;
+
+            .image {
+                max-height: 80px;
+                margin-right: 1rem;
+            }
+
+            .info {
+                min-width: 5rem;
+            }
+        }
+
+        .quantity-and-remove {
+            height: 80px;
+
+
+            .quantity-controls {
+                button {
+                    width: 2rem;
+                    height: 2rem;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}

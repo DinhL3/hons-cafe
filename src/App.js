@@ -15,6 +15,7 @@ import DrinksInGroup from './components/DrinksMenu/DrinksInGroup';
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
 import Profile from './components/Profile/Profile';
+import Cart from './components/Cart/Cart';
 
 function BasicLayout() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

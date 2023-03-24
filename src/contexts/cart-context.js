@@ -5,10 +5,12 @@ import axios from "axios";
 export const CartContext = createContext();
 
 export const CartProvider = (props) => {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(null);
     const [cartLoading, setCartLoading] = useState(true);
 
-    const { user, token } = useContext(UserContext);
+    const token = localStorage.getItem("token");
+
+    const { user } = useContext(UserContext);
 
     const addToCart = async (drinkId) => {
         try {
@@ -83,7 +85,7 @@ export const CartProvider = (props) => {
 
     const clearCart = async () => {
         try {
-            const response = await axios.delete(
+            await axios.delete(
                 "http://localhost:5000/api/cart/clear-cart",
                 {
                     headers: {
@@ -92,7 +94,7 @@ export const CartProvider = (props) => {
                 }
             );
 
-            setCart([]);
+            setCart(null);
         } catch (error) {
             console.log(error);
         }
@@ -117,9 +119,9 @@ export const CartProvider = (props) => {
         if (user) {
             getCart();
         } else {
-            setCartLoading(false);
+            setCart(null);
         }
-    }, [user]);
+    }, [user, token]);
 
     const contextValue = {
         cart,

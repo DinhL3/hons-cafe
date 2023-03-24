@@ -13,8 +13,7 @@ const UserProvider = (props) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [token, setToken] = useState(localStorage.getItem("token"));
-
+    const token = localStorage.getItem("token");
 
     const fetchUser = async (token) => {
         try {
@@ -26,7 +25,6 @@ const UserProvider = (props) => {
             });
             setIsLoading(false);
             setUser(response.data);
-            setToken = token;
         } catch (error) {
             setIsLoading(false);
             if (error.response && error.response.data) {
