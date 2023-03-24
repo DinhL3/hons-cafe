@@ -30,7 +30,7 @@ const DrinkCard = ({ drink }) => {
             } finally {
                 setTimeout(() => {
                     setCartMessage(null);
-                }, 2000);
+                }, 1000);
             }
         }
     }

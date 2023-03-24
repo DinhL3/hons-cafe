@@ -18,6 +18,9 @@ const CartCard = ({ drink, quantity }) => {
     const { increaseQuantity, decreaseQuantity, removeItem } = useContext(CartContext);
     const { isExtraSmallScreen } = useContext(MediaQueryContext);
 
+    const handleRemoveClick = async () => { await removeItem(drinkId) };
+    const handleIncreaseClick = async () => { await increaseQuantity(drinkId) };
+    const handleDecreaseClick = async () => { await decreaseQuantity(drinkId) };
 
 
     return (
@@ -31,11 +34,11 @@ const CartCard = ({ drink, quantity }) => {
             </div>
             <div className={styles['quantity-and-remove']}>
                 <div className={styles['quantity-controls']}>
-                    <Button className="light"><RemoveIcon /></Button>
+                    <Button className="light" onClick={handleDecreaseClick}><RemoveIcon /></Button>
                     <span>{quantity}</span>
-                    <Button className="dark"><AddIcon /></Button>
+                    <Button className="dark" onClick={handleIncreaseClick}><AddIcon /></Button>
                 </div>
-                <button className={styles.remove} type="button"><DeleteOutlineIcon /></button>
+                <button className={styles.remove} type="button" onClick={handleRemoveClick}><DeleteOutlineIcon /></button>
             </div>
         </div>);
 }

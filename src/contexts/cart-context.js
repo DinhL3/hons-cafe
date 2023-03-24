@@ -12,6 +12,21 @@ export const CartProvider = (props) => {
 
     const { user } = useContext(UserContext);
 
+    const getCart = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/api/cart", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setCart(response.data.cart);
+            setCartLoading(false);
+        } catch (error) {
+            console.log(error);
+            setCartLoading(false);
+        }
+    };
+
     const addToCart = async (drinkId) => {
         try {
             const response = await axios.post(
@@ -85,7 +100,7 @@ export const CartProvider = (props) => {
 
     const clearCart = async () => {
         try {
-            await axios.delete(
+            const response = await axios.delete(
                 "http://localhost:5000/api/cart/clear-cart",
                 {
                     headers: {
@@ -94,27 +109,13 @@ export const CartProvider = (props) => {
                 }
             );
 
-            setCart(null);
+            setCart(response.data.cart);
         } catch (error) {
             console.log(error);
         }
     };
 
     useEffect(() => {
-        const getCart = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/api/cart", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setCart(response.data.cart);
-                setCartLoading(false);
-            } catch (error) {
-                console.log(error);
-                setCartLoading(false);
-            }
-        };
 
         if (user) {
             getCart();
@@ -126,6 +127,7 @@ export const CartProvider = (props) => {
     const contextValue = {
         cart,
         cartLoading,
+        getCart,
         addToCart,
         increaseQuantity,
         decreaseQuantity,
