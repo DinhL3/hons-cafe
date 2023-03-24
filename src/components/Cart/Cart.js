@@ -3,6 +3,7 @@ import styles from './Cart.module.scss';
 import { Link, Navigate } from "react-router-dom";
 
 import Button from '../UI/Button/Button';
+import Spinner from '../UI/Spinner/Spinner';
 import ContentWrapper from '../UI/Wrapper/ContentWrapper';
 import CartCard from './CartCard';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -17,19 +18,27 @@ import { CartContext } from '../../contexts/cart-context';
 const Cart = () => {
     const { isExtraSmallScreen, isSmallScreen } = useContext(MediaQueryContext);
     const { user } = useContext(UserContext)
-    const { cart, clearCart, getCart } = useContext(CartContext);
+    const { cart, clearCart, getCart, cartLoading } = useContext(CartContext);
 
     const handleClearCartClick = async () => {
         await clearCart();
     };
 
-    useEffect(() => { if (user) getCart(); }, [])
+    useEffect(() => {
+        if (user) { getCart() }
+        ;
+    }, [])
+
+    if (cartLoading) {
+        return <Spinner loading={cartLoading} />;
+    }
+
+    if (!cartLoading && !user) {
+        return <Navigate to="/login" replace={true} />
+    }
 
     return (
         <React.Fragment>
-            {!user && (
-                <Navigate to="/login" replace={true} />
-            )}
             {cart?.drinks?.length === 0 ?
                 <ContentWrapper flex="flex-center" padding="p-1">
                     <h1>Your cart is empty</h1>

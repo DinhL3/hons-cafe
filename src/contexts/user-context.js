@@ -23,8 +23,8 @@ const UserProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            setIsLoading(false);
             setUser(response.data);
+            setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
             if (error.response && error.response.data) {
@@ -50,8 +50,8 @@ const UserProvider = (props) => {
                 email,
                 password,
             });
-            setIsLoading(false);
             setUser(response.data);
+            setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
             if (error.response && error.response.data) {
@@ -70,9 +70,9 @@ const UserProvider = (props) => {
                 email,
                 password,
             });
-            setIsLoading(false);
             setUser(response.data);
             localStorage.setItem("token", response.data.token);
+            setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
             if (error.response && error.response.data) {
