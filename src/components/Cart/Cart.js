@@ -23,7 +23,6 @@ const Cart = () => {
         await clearCart();
     };
 
-
     useEffect(() => { if (user) getCart(); }, [])
 
     return (
@@ -40,7 +39,7 @@ const Cart = () => {
                     <div className={styles['drinks-list']}>
                         <h1>Your cart</h1>
                         {cart?.drinks?.map(drink => (
-                            <CartCard key={drink._id} drink={drink.drink} quantity={drink.quantity} />
+                            <CartCard key={drink._id} drink={drink.drink} quantity={drink.quantity} totalDrinkPrice={drink.totalDrinkPrice} />
                         ))}
 
                         <Button className="light" onClick={handleClearCartClick}><DeleteOutlineIcon />Clear cart</Button>

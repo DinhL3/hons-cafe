@@ -13,7 +13,7 @@ import dummy from "../../assets/img/dummy1.png";
 
 
 
-const CartCard = ({ drink, quantity }) => {
+const CartCard = ({ drink, quantity, totalDrinkPrice }) => {
     const { name, description, price, image, _id: drinkId } = drink;
     const { increaseQuantity, decreaseQuantity, removeItem } = useContext(CartContext);
     const { isExtraSmallScreen } = useContext(MediaQueryContext);
@@ -29,7 +29,7 @@ const CartCard = ({ drink, quantity }) => {
                 <img className={styles.image} src={image || dummy} alt={name} />
                 <div className={styles.info}>
                     <h3 className={styles.name}>{name}</h3>
-                    <p className={styles.price}>€{(price * quantity).toFixed(2)}</p>
+                    <p className={styles.price}>€{totalDrinkPrice.toFixed(2)}</p>
                 </div>
             </div>
             <div className={styles['quantity-and-remove']}>
