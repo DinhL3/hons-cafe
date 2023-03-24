@@ -14,6 +14,7 @@ export const CartProvider = (props) => {
 
     const getCart = async () => {
         try {
+            setCartLoading(true);
             const response = await axios.get("http://localhost:5000/api/cart", {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -116,11 +117,8 @@ export const CartProvider = (props) => {
     };
 
     useEffect(() => {
-
         if (user) {
             getCart();
-        } else {
-            setCart(null);
         }
     }, [user, token]);
 

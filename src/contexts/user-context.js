@@ -5,8 +5,10 @@ export const UserContext = createContext({
     user: null,
     isLoading: false,
     errorMessage: "",
+    fetchUser: () => { },
     registerUser: () => { },
     loginUser: () => { },
+    logoutUser: () => { }
 });
 
 const UserProvider = (props) => {
@@ -94,6 +96,7 @@ const UserProvider = (props) => {
         isLoading,
         errorMessage,
         registerUser,
+        fetchUser,
         loginUser,
         logoutUser,
         setErrorMessage,
