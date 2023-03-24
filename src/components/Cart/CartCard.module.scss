@@ -62,7 +62,6 @@
     }
 
     &.xsmall {
-        max-width: 95vw;
 
         h3 {
             font-size: 1rem;
@@ -77,7 +76,7 @@
             }
 
             .info {
-                min-width: 5rem;
+                min-width: 7rem;
             }
         }
 
@@ -86,6 +85,11 @@
 
 
             .quantity-controls {
+                span {
+                    margin: 0 0.5rem;
+                }
+
+
                 button {
                     width: 2rem;
                     height: 2rem;
