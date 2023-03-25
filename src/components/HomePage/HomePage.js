@@ -13,7 +13,7 @@ const HomePage = () => {
 
     return (
         <React.Fragment>
-            <ContentWrapper theme={'light-pink'} flex={'flex-between'}>
+            <ContentWrapper theme={'light-pink'} flex={'flex-between-center'}>
                 <ContentWrapperText>
                     <h1>Fresh Coffee Delivered</h1>
                     <p>Our coffee shop provides you with a selection of expertly crafted coffee blends, roasted to perfection. Indulge in the comfort of your home and experience the perfect cup every time.</p>

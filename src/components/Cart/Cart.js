@@ -27,7 +27,7 @@ const Cart = () => {
 
     useEffect(() => {
         const loadCart = async () => {
-            await getCart();
+            if (user) { await getCart(); }
             setIsLoaded(true);
         };
         loadCart();

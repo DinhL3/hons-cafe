@@ -23,6 +23,13 @@
         align-items: flex-start;
     }
 
+    &.flex-between-center {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
     &.flex-center-column {
         @include mixins.flex-center-column
     }

@@ -23,7 +23,8 @@ export const CartProvider = (props) => {
             setCart(response.data.cart);
             setCartLoading(false);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            setCart(null)
             setCartLoading(false);
         }
     };

@@ -8,7 +8,7 @@ const AboutUs = () => {
 
     return (
         <div >
-            <ContentWrapper theme='light-pink' flex={'flex-between'}>
+            <ContentWrapper theme='light-pink' flex={'flex-between-center'}>
                 <ContentWrapperImage src={about} alt="Latte cup" />
                 <ContentWrapperText>
                     <h1>About us</h1>

@@ -15,7 +15,7 @@ const UserProvider = (props) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const token = localStorage.getItem("token");
+    const [token, setToken] = useState(localStorage.getItem("token"))
 
     const fetchUser = async (token) => {
         try {
@@ -29,6 +29,7 @@ const UserProvider = (props) => {
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
+            setToken(null)
             if (error.response && error.response.data) {
                 setErrorMessage(error.response.data.message);
             } else {
@@ -53,6 +54,8 @@ const UserProvider = (props) => {
                 password,
             });
             setUser(response.data);
+            setToken(response.data.token)
+            localStorage.setItem("token", response.data.token);
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
@@ -73,6 +76,7 @@ const UserProvider = (props) => {
                 password,
             });
             setUser(response.data);
+            setToken(response.data.token)
             localStorage.setItem("token", response.data.token);
             setIsLoading(false);
         } catch (error) {
@@ -87,6 +91,7 @@ const UserProvider = (props) => {
 
     const logoutUser = () => {
         setUser(null);
+        setToken(null)
         localStorage.removeItem("token");
     };
 
