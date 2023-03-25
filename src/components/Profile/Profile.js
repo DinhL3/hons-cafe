@@ -59,7 +59,7 @@ const Profile = () => {
                     <LogoutIcon />Log out
                 </Button>
             </ContentWrapper>
-            <ContentWrapper padding="p-top-1">
+            <ContentWrapper padding="p-1">
                 {orders.length === 0 ? <p>You don't have any orders</p> : ""}
             </ContentWrapper>
 

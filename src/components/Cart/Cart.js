@@ -27,11 +27,11 @@ const Cart = () => {
 
     useEffect(() => {
         const loadCart = async () => {
-            if (user) { await getCart(); }
+            await getCart()
             setIsLoaded(true);
         };
         loadCart();
-    }, [])
+    }, [user])
 
     if (!isLoaded) {
         return <Spinner loading={!isLoaded} />;
