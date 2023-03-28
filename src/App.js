@@ -7,6 +7,7 @@ import { MediaQueryProvider } from './contexts/media-query-context';
 import { MenuProvider } from './contexts/menu-context';
 import { CartProvider } from './contexts/cart-context';
 import UserProvider from './contexts/user-context';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 import AboutUs from './components/AboutUs/AboutUs';
 import NotFound from './components/NotFound/NotFound';
@@ -21,15 +22,17 @@ function BasicLayout() {
   return (
     <UserProvider>
       <CartProvider>
-        <MediaQueryProvider>
-          <MenuProvider>
-            <React.Fragment>
-              <Navigation />
-              <Outlet />
-              {/* <Footer /> */}
-            </React.Fragment>
-          </MenuProvider>
-        </MediaQueryProvider>
+        <PayPalScriptProvider options={{ "client-id": "AZ3IPF5OlK6fi7n7yHIIx0LadY9vccLlTfLyHPPTGAa596SpNBUFB1QWo5DFYwdSjqxvcZXuU1acuVmR", "currency": "EUR", "disable-funding": "card" }}>
+          <MediaQueryProvider>
+            <MenuProvider>
+              <React.Fragment>
+                <Navigation />
+                <Outlet />
+                {/* <Footer /> */}
+              </React.Fragment>
+            </MenuProvider>
+          </MediaQueryProvider>
+        </PayPalScriptProvider>
       </CartProvider>
     </UserProvider>
   )

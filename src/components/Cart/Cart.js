@@ -7,6 +7,7 @@ import Spinner from '../UI/Spinner/Spinner';
 import ContentWrapper from '../UI/Wrapper/ContentWrapper';
 import CartCard from './CartCard';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import PayPalCheckoutButton from '../PayPal/PayPalCheckoutButton';
 
 
 import { MediaQueryContext } from '../../contexts/media-query-context';
@@ -17,31 +18,23 @@ import { CartContext } from '../../contexts/cart-context';
 
 const Cart = () => {
     const { isExtraSmallScreen, isSmallScreen } = useContext(MediaQueryContext);
-    const { user, fetchUser } = useContext(UserContext)
-    const { cart, clearCart, getCart } = useContext(CartContext);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const { user, token } = useContext(UserContext)
+    const { cart, clearCart, cartLoading } = useContext(CartContext);
 
     const handleClearCartClick = async () => {
         await clearCart();
     };
 
-    useEffect(() => {
-        const loadCart = async () => {
-            await getCart()
-            setIsLoaded(true);
-        };
-        loadCart();
-    }, [user])
-
-    if (!isLoaded) {
-        return <Spinner loading={!isLoaded} />;
+    if (cartLoading) {
+        return <Spinner loading={cartLoading} />
     }
 
-    if (isLoaded && !cart) {
+    if (!cartLoading && !user) {
         return <Navigate to="/login" replace={true} />
     }
 
-    if (isLoaded && cart) {
+    if (!cartLoading && cart) {
+        // console.log(cart)
         return (
             <React.Fragment>
                 {cart.drinks.length === 0 ?
@@ -60,8 +53,9 @@ const Cart = () => {
                         </div>
                         <div className={styles['checkout']}>
                             <h1>Total</h1>
-                            <p>€ {cart.totalPrice}</p>
-                            <Button className="dark">Check out with Paypal</Button>
+                            <p className={styles['total-price']}>€ {cart.totalPrice}</p>
+                            <p>Checkout with:</p>
+                            <PayPalCheckoutButton />
                         </div>
                     </ContentWrapper>
                 }
@@ -69,6 +63,9 @@ const Cart = () => {
             </React.Fragment>
         );
     }
+
+
+
 
 
 }

@@ -6,7 +6,7 @@ export const CartContext = createContext();
 
 export const CartProvider = (props) => {
     const [cart, setCart] = useState(null);
-    const [cartLoading, setCartLoading] = useState(false);
+    const [cartLoading, setCartLoading] = useState(true);
 
     // const token = localStorage.getItem("token");
 
@@ -14,7 +14,6 @@ export const CartProvider = (props) => {
 
     const getCart = async () => {
         try {
-            setCartLoading(true);
             const response = await axios.get("http://localhost:5000/api/cart", {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -58,7 +57,6 @@ export const CartProvider = (props) => {
                     },
                 }
             );
-
             setCart(response.data.cart);
         } catch (error) {
             console.log(error);
@@ -76,7 +74,6 @@ export const CartProvider = (props) => {
                     },
                 }
             );
-
             setCart(response.data.cart);
         } catch (error) {
             console.log(error);
@@ -119,9 +116,9 @@ export const CartProvider = (props) => {
 
     useEffect(() => {
         if (user) {
-            getCart();
+            getCart()
         }
-    }, [user, token]);
+    }, [user]);
 
     const contextValue = {
         cart,

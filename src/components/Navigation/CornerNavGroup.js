@@ -1,6 +1,6 @@
 import styles from './CornerNavGroup.module.scss';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Button from '../UI/Button/Button';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -14,7 +14,7 @@ const CornerNavGroup = (props) => {
     const { isSmallScreen } = props;
 
     const { user } = useContext(UserContext);
-    const { cart } = useContext(CartContext);
+    const { cart, getCart } = useContext(CartContext);
 
     let userButtonText;
     if (isSmallScreen) {
