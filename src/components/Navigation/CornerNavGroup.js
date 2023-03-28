@@ -1,10 +1,11 @@
 import styles from './CornerNavGroup.module.scss';
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from '../UI/Button/Button';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
+import Spinner from '../UI/Spinner/Spinner';
 
 import { UserContext } from '../../contexts/user-context';
 import { CartContext } from '../../contexts/cart-context';
@@ -12,9 +13,10 @@ import { CartContext } from '../../contexts/cart-context';
 
 const CornerNavGroup = (props) => {
     const { isSmallScreen } = props;
+    const [cartNum, setCartNum] = useState(null);
 
     const { user } = useContext(UserContext);
-    const { cart, getCart } = useContext(CartContext);
+    const { cart, getCart, cartLoading } = useContext(CartContext);
 
     let userButtonText;
     if (isSmallScreen) {
@@ -26,8 +28,13 @@ const CornerNavGroup = (props) => {
     }
 
     useEffect(() => {
-        getCart()
-    }, []);
+        if (cart) {
+            setCartNum(cart.drinks.length)
+        }
+        if (!cart) {
+            setCartNum(null)
+        }
+    }, [cart]);
 
     return (
         <div className={`${styles['corner-nav-group']} ${isSmallScreen ? styles.small : ''}`}>
@@ -36,7 +43,7 @@ const CornerNavGroup = (props) => {
             </Button></Link>
             <Link to="cart"><Button type="button" className={`dark ${isSmallScreen ? 'small' : ''}`}>
                 <ShoppingCartIcon />
-                <p className="num">{user && cart?.drinks?.length}</p>
+                <p className="num">{cartNum}</p>
             </Button></Link>
         </div>
     );

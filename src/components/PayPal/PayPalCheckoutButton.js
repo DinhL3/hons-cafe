@@ -12,7 +12,7 @@ const PaypalCheckoutButton = () => {
     const [error, setError] = useState(null);
 
     const { user, token } = useContext(UserContext);
-    const { cart } = useContext(CartContext);
+    const { cart, getCart } = useContext(CartContext);
 
     const handleApprove = async (order) => {
         try {
@@ -26,7 +26,7 @@ const PaypalCheckoutButton = () => {
                 }
             );
             setIsPaid(true);
-
+            getCart();
         } catch (error) {
             console.log(error);
             setError("payment successful but could not placed an order");
