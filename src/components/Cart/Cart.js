@@ -9,21 +9,24 @@ import CartCard from './CartCard';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PayPalCheckoutButton from '../PayPal/PayPalCheckoutButton';
 
-
 import { MediaQueryContext } from '../../contexts/media-query-context';
 import { UserContext } from '../../contexts/user-context';
 import { CartContext } from '../../contexts/cart-context';
 
-
-
 const Cart = () => {
     const { isExtraSmallScreen, isSmallScreen } = useContext(MediaQueryContext);
     const { user, token } = useContext(UserContext)
-    const { cart, clearCart, cartLoading } = useContext(CartContext);
+    const { cart, clearCart, cartLoading, getCart } = useContext(CartContext);
 
     const handleClearCartClick = async () => {
         await clearCart();
     };
+
+    useEffect(() => {
+        if (user) {
+            getCart()
+        }
+    }, [user]);
 
     if (cartLoading) {
         return <Spinner loading={cartLoading} />
@@ -34,7 +37,6 @@ const Cart = () => {
     }
 
     if (!cartLoading && cart) {
-        // console.log(cart)
         return (
             <React.Fragment>
                 {cart.drinks.length === 0 ?
@@ -63,11 +65,6 @@ const Cart = () => {
             </React.Fragment>
         );
     }
-
-
-
-
-
 }
 
 export default Cart;

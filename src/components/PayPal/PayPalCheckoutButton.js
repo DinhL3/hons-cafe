@@ -1,5 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { Link, Navigate } from "react-router-dom";
+
+import axios from "axios";
 
 import { UserContext } from '../../contexts/user-context';
 import { CartContext } from '../../contexts/cart-context';
@@ -8,21 +11,30 @@ const PaypalCheckoutButton = () => {
     const [isPaid, setIsPaid] = useState(false);
     const [error, setError] = useState(null);
 
-    const { user } = useContext(UserContext);
+    const { user, token } = useContext(UserContext);
     const { cart } = useContext(CartContext);
 
-    const handleApprove = (order) => {
-        //backend
+    const handleApprove = async (order) => {
+        try {
+            await axios.post(
+                "http://localhost:5000/api/orders/save",
+                { order },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setIsPaid(true);
 
-        //if res is success
-        setIsPaid(true);
-
-        //if error
-        setError("payment successful but could not placed an order");
+        } catch (error) {
+            console.log(error);
+            setError("payment successful but could not placed an order");
+        }
     }
 
     if (isPaid) {
-        //redirect to success page
+        return <Navigate to="/success" replace={true} />
     }
 
     if (error) {
@@ -37,7 +49,6 @@ const PaypalCheckoutButton = () => {
             }}
             forceReRender={[cart]}
             createOrder={(data, actions) => {
-                console.log(cart.totalPrice);
                 const purchaseUnits = [{
                     reference_id: "default",
                     description: `Hon's Café order for ${user.userName}`,
@@ -77,7 +88,6 @@ const PaypalCheckoutButton = () => {
             }}
             onApprove={async (data, actions) => {
                 const order = await actions.order.capture()
-                console.log("Res from PayPal: ", order);
                 handleApprove(order);
             }}
             onCancel={() => {

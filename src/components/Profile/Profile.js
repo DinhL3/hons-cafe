@@ -11,10 +11,9 @@ import { UserContext } from '../../contexts/user-context';
 
 
 const Profile = () => {
-    const [isLoaded, setIsLoaded] = useState(false);
     const [orders, setOrders] = useState([]);
 
-    const { logoutUser, user, token } = useContext(UserContext);
+    const { logoutUser, user, token, isLoading } = useContext(UserContext);
 
     const getOrders = async () => {
         try {
@@ -34,16 +33,15 @@ const Profile = () => {
             if (user) {
                 getOrders();
             }
-            setIsLoaded(true);
         };
         loadPage();
     }, [])
 
-    if (!isLoaded) {
-        return <Spinner loading={!isLoaded} />;
+    if (isLoading) {
+        return <Spinner loading={!isLoading} />;
     }
 
-    if (isLoaded && !user) {
+    if (!isLoading && !user) {
         return (
             <ContentWrapper flex={'flex-center'} padding="p-1">
                 <h1>Please log in to see your profile</h1>
@@ -51,20 +49,24 @@ const Profile = () => {
         );
     }
 
-    return (
-        <React.Fragment>
-            <ContentWrapper flex={'flex-between'} padding="p-1">
-                <h1>Your order history</h1>
-                <Button type="button" className="light text-and-icon" onClick={logoutUser}>
-                    <LogoutIcon />Log out
-                </Button>
-            </ContentWrapper>
-            <ContentWrapper padding="p-1">
-                {orders.length === 0 ? <p>You don't have any orders</p> : ""}
-            </ContentWrapper>
+    if (!isLoading && user) {
+        return (
+            <React.Fragment>
+                <ContentWrapper flex={'flex-between'} padding="p-1">
+                    <h1>Your order history</h1>
+                    <Button type="button" className="light text-and-icon" onClick={logoutUser}>
+                        <LogoutIcon />Log out
+                    </Button>
+                </ContentWrapper>
+                <ContentWrapper padding="p-1">
+                    {orders.length === 0 ? <p>You don't have any orders</p> : ""}
+                </ContentWrapper>
 
-        </React.Fragment>
-    );
+            </React.Fragment>
+        );
+    }
+
+
 }
 
 export default Profile;

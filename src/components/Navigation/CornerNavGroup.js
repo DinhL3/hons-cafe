@@ -25,6 +25,10 @@ const CornerNavGroup = (props) => {
         userButtonText = 'Login';
     }
 
+    useEffect(() => {
+        getCart()
+    }, []);
+
     return (
         <div className={`${styles['corner-nav-group']} ${isSmallScreen ? styles.small : ''}`}>
             <Link to={user ? "profile" : "login"}><Button type="button" className={`light ${isSmallScreen ? 'small' : 'text-and-icon'}`}>

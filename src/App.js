@@ -17,6 +17,7 @@ import Login from './components/Login/Login';
 import Register from './components/Login/Register';
 import Profile from './components/Profile/Profile';
 import Cart from './components/Cart/Cart';
+import Success from './components/Cart/Success';
 
 function BasicLayout() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="profile" element={<Profile />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="success" element={<Success />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

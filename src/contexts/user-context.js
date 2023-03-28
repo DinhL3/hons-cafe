@@ -13,13 +13,12 @@ export const UserContext = createContext({
 
 const UserProvider = (props) => {
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     const [token, setToken] = useState(localStorage.getItem("token"))
 
     const fetchUser = async (token) => {
         try {
-            setIsLoading(true);
             const response = await axios.get("http://localhost:5000/api/users/me", {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -42,11 +41,13 @@ const UserProvider = (props) => {
         if (token) {
             fetchUser(token);
         }
+        if (!token) {
+            setIsLoading(false);
+        }
     }, [token]);
 
     const registerUser = async (userName, email, password) => {
         try {
-            setIsLoading(true);
             setErrorMessage("");
             const response = await axios.post("http://localhost:5000/api/users/register", {
                 userName,
@@ -69,7 +70,6 @@ const UserProvider = (props) => {
 
     const loginUser = async (email, password) => {
         try {
-            setIsLoading(true);
             setErrorMessage("");
             const response = await axios.post("http://localhost:5000/api/users/login", {
                 email,
@@ -93,6 +93,7 @@ const UserProvider = (props) => {
         setUser(null);
         setToken(null)
         localStorage.removeItem("token");
+        setIsLoading(false);
     };
 
     const userContextValue = {

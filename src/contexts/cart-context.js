@@ -114,11 +114,11 @@ export const CartProvider = (props) => {
         }
     };
 
-    useEffect(() => {
-        if (user) {
-            getCart()
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if (user) {
+    //         getCart()
+    //     }
+    // }, [user]);
 
     const contextValue = {
         cart,
