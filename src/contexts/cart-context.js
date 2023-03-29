@@ -6,7 +6,7 @@ export const CartContext = createContext();
 
 export const CartProvider = (props) => {
     const [cart, setCart] = useState(null);
-    const [cartLoading, setCartLoading] = useState(true);
+    const [cartLoading, setCartLoading] = useState(false);
 
     const { user, token } = useContext(UserContext);
 
