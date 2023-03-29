@@ -55,7 +55,7 @@ const Cart = () => {
 
         return (
             <React.Fragment>
-                {cartLoading && <div className={styles.blocker}><Spinner loading={true} /></div>}
+                {cartLoading && <div className={styles.blocker}></div>}
                 <ContentWrapper theme="light-pink" flex={isSmallScreen ? 'flex-center-column' : 'flex-between'} padding={isExtraSmallScreen ? "p-top-1" : "p-1"}>
                     <div className={styles['drinks-list']}>
                         <h1>Your cart</h1>
