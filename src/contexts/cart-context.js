@@ -8,13 +8,13 @@ export const CartProvider = (props) => {
     const [cart, setCart] = useState(null);
     const [cartLoading, setCartLoading] = useState(true);
 
-    // const token = localStorage.getItem("token");
-
     const { user, token } = useContext(UserContext);
+
+    const baseUrl = process.env.REACT_APP_BACKEND_URL;
 
     const getCart = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/cart", {
+            const response = await axios.get(`${baseUrl}/cart`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -31,7 +31,7 @@ export const CartProvider = (props) => {
     const addToCart = async (drinkId) => {
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/cart/add-to-cart",
+                `${baseUrl}/cart/add-to-cart`,
                 { drinkId, quantity: 1 },
                 {
                     headers: {
@@ -49,7 +49,7 @@ export const CartProvider = (props) => {
     const increaseQuantity = async (drinkId) => {
         try {
             const response = await axios.patch(
-                `http://localhost:5000/api/cart/increase-quantity/${drinkId}`,
+                `${baseUrl}/cart/increase-quantity/${drinkId}`,
                 null,
                 {
                     headers: {
@@ -66,7 +66,7 @@ export const CartProvider = (props) => {
     const decreaseQuantity = async (drinkId) => {
         try {
             const response = await axios.patch(
-                `http://localhost:5000/api/cart/decrease-quantity/${drinkId}`,
+                `${baseUrl}/cart/decrease-quantity/${drinkId}`,
                 null,
                 {
                     headers: {
@@ -83,7 +83,7 @@ export const CartProvider = (props) => {
     const removeItem = async (drinkId) => {
         try {
             const response = await axios.delete(
-                `http://localhost:5000/api/cart/remove-item/${drinkId}`,
+                `${baseUrl}/cart/remove-item/${drinkId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -100,7 +100,7 @@ export const CartProvider = (props) => {
     const clearCart = async () => {
         try {
             const response = await axios.delete(
-                "http://localhost:5000/api/cart/clear-cart",
+                `${baseUrl}/cart/clear-cart`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

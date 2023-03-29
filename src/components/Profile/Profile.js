@@ -17,9 +17,12 @@ const Profile = () => {
 
     const { logoutUser, user, token } = useContext(UserContext);
 
+    const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
+
     const getOrders = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/orders", {
+            const response = await axios.get(`${baseUrl}/orders`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

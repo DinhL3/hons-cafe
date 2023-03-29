@@ -26,15 +26,18 @@ const OrderDetails = () => {
 
     const orderId = useParams().orderId;
 
+    const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
+
 
     const getOrderById = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/orders/${orderId}`, {
+            const response = await axios.get(`${baseUrl}/orders/${orderId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(response.data.order);
+            setOrder(response.data.order)
             setIsLoading(false);
 
         } catch (error) {
@@ -62,12 +65,12 @@ const OrderDetails = () => {
         );
     }
 
-    if (!isLoading) {
+    if (!isLoading && order) {
         return (<React.Fragment>
             <ContentWrapper flex={isSmallScreen ? 'flex-center-column' : 'flex-between'} padding={isExtraSmallScreen ? "p-top-1" : "p-1"}>
                 <div className={styles.left}>
                     <h1>Order details</h1>
-                    {order?.drinks.map(drink => (
+                    {order.drinks.map(drink => (
                         <OrderDetailsDrinkCard key={drink.id} drink={drink} />
                     ))}
                     <div className={styles.total}>

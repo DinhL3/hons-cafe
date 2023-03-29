@@ -9,6 +9,7 @@ import { CartProvider } from './contexts/cart-context';
 import UserProvider from './contexts/user-context';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
+
 import AboutUs from './components/AboutUs/AboutUs';
 import NotFound from './components/NotFound/NotFound';
 import DrinksMenu from './components/DrinksMenu/DrinksMenu';
@@ -24,7 +25,7 @@ function BasicLayout() {
   return (
     <UserProvider>
       <CartProvider>
-        <PayPalScriptProvider options={{ "client-id": "AZ3IPF5OlK6fi7n7yHIIx0LadY9vccLlTfLyHPPTGAa596SpNBUFB1QWo5DFYwdSjqxvcZXuU1acuVmR", "currency": "EUR", "disable-funding": "card" }}>
+        <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID, "currency": "EUR", "disable-funding": "card" }}>
           <MediaQueryProvider>
             <MenuProvider>
               <React.Fragment>

@@ -19,9 +19,11 @@ const UserProvider = (props) => {
     const [errorMessage, setErrorMessage] = useState("");
     const [token, setToken] = useState(localStorage.getItem("token"))
 
+    const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
     const fetchUser = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/users/me", {
+            const response = await axios.get(`${baseUrl}/users/me`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -53,7 +55,7 @@ const UserProvider = (props) => {
     const registerUser = async (userName, email, password) => {
         try {
             setErrorMessage("");
-            const response = await axios.post("http://localhost:5000/api/users/register", {
+            const response = await axios.post(`${baseUrl}/users/register`, {
                 userName,
                 email,
                 password,
@@ -76,7 +78,7 @@ const UserProvider = (props) => {
     const loginUser = async (email, password) => {
         try {
             setErrorMessage("");
-            const response = await axios.post("http://localhost:5000/api/users/login", {
+            const response = await axios.post(`${baseUrl}/users/login`, {
                 email,
                 password,
             });

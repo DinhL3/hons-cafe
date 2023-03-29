@@ -18,8 +18,11 @@ const DrinksMenu = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const hotDrinksAPI = 'http://localhost:5000/api/drinks/hot';
-    const coldDrinksAPI = 'http://localhost:5000/api/drinks/cold';
+    const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
+
+    const hotDrinksAPI = `${baseUrl}/drinks/hot`;
+    const coldDrinksAPI = `${baseUrl}/drinks/cold`;
 
     useEffect(() => {
         setIsLoading(true);

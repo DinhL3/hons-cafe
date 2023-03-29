@@ -14,10 +14,13 @@ const PaypalCheckoutButton = () => {
     const { user, token } = useContext(UserContext);
     const { cart, getCart } = useContext(CartContext);
 
+    const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
+
     const handleApprove = async (order) => {
         try {
             await axios.post(
-                "http://localhost:5000/api/orders/save",
+                `${baseUrl}/orders/save`,
                 { order },
                 {
                     headers: {

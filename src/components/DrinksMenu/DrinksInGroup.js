@@ -18,13 +18,15 @@ const DrinksInGroup = () => {
     let { drinkGroup } = useParams()
     const capitalizedDrinkGroup = drinkGroup.charAt(0).toUpperCase() + drinkGroup.slice(1);
 
+    const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
     const [drinks, setDrinks] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [sortType, setSortType] = useState('default');
     const [filterType, setFilterType] = useState('all');
-    const hotDrinksAPI = 'http://localhost:5000/api/drinks/hot';
-    const coldDrinksAPI = 'http://localhost:5000/api/drinks/cold';
+    const hotDrinksAPI = `${baseUrl}/drinks/hot`;
+    const coldDrinksAPI = `${baseUrl}/drinks/cold`;
 
     useEffect(() => {
         setIsLoading(true);
