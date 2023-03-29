@@ -29,7 +29,11 @@ const CornerNavGroup = (props) => {
 
     useEffect(() => {
         if (isLoggedIn && cart) {
-            setCartNum(cart.drinks.length)
+            let quantitySum = 0;
+            cart.drinks.forEach(drink => {
+                quantitySum += drink.quantity;
+            });
+            setCartNum(quantitySum)
         }
         if (!isLoggedIn) {
             setCartNum(null)
