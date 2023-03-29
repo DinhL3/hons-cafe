@@ -53,6 +53,7 @@ const UserProvider = (props) => {
     }, [isLoggedIn]);
 
     const registerUser = async (userName, email, password) => {
+        setIsLoading(true)
         try {
             setErrorMessage("");
             const response = await axios.post(`${baseUrl}/users/register`, {
@@ -76,6 +77,7 @@ const UserProvider = (props) => {
     };
 
     const loginUser = async (email, password) => {
+        setIsLoading(true)
         try {
             setErrorMessage("");
             const response = await axios.post(`${baseUrl}/users/login`, {

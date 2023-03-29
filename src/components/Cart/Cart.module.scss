@@ -1,5 +1,15 @@
 @use "src/sass/abstracts/colors";
+@use "src/sass/abstracts/mixins";
 
+.blocker {
+    position: absolute;
+    height: calc(100vh - 4.5rem);
+    bottom: 0;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.500);
+    z-index: 1000;
+    @include mixins.flex-center;
+}
 
 .checkout {
     border-top: 2px solid colors.$light-pink-2;

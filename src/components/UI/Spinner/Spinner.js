@@ -1,13 +1,13 @@
 import ContentWrapper from "../Wrapper/ContentWrapper";
-import { BeatLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 const Spinner = (props) => {
     return (
         <ContentWrapper padding='p-top-bottom-2' flex="flex-center">
-            <BeatLoader
-                color="#FF758F"
+            <ClipLoader
+                color="#FF4D6D"
                 loading={props.loading}
-                size={15}
+                size={50}
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />

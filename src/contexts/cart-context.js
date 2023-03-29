@@ -47,6 +47,7 @@ export const CartProvider = (props) => {
     };
 
     const increaseQuantity = async (drinkId) => {
+        setCartLoading(true);
         try {
             const response = await axios.patch(
                 `${baseUrl}/cart/increase-quantity/${drinkId}`,
@@ -58,12 +59,16 @@ export const CartProvider = (props) => {
                 }
             );
             setCart(response.data.cart);
+            setCartLoading(false);
+
         } catch (error) {
             console.log(error);
+            setCartLoading(false)
         }
     };
 
     const decreaseQuantity = async (drinkId) => {
+        setCartLoading(true);
         try {
             const response = await axios.patch(
                 `${baseUrl}/cart/decrease-quantity/${drinkId}`,
@@ -75,12 +80,15 @@ export const CartProvider = (props) => {
                 }
             );
             setCart(response.data.cart);
+            setCartLoading(false);
         } catch (error) {
             console.log(error);
+            setCartLoading(false);
         }
     };
 
     const removeItem = async (drinkId) => {
+        setCartLoading(true);
         try {
             const response = await axios.delete(
                 `${baseUrl}/cart/remove-item/${drinkId}`,
@@ -92,12 +100,15 @@ export const CartProvider = (props) => {
             );
 
             setCart(response.data.cart);
+            setCartLoading(false);
         } catch (error) {
             console.log(error);
+            setCartLoading(false);
         }
     };
 
     const clearCart = async () => {
+        setCartLoading(true);
         try {
             const response = await axios.delete(
                 `${baseUrl}/cart/clear-cart`,
@@ -107,10 +118,11 @@ export const CartProvider = (props) => {
                     },
                 }
             );
-
             setCart(response.data.cart);
+            setCartLoading(false);
         } catch (error) {
             console.log(error);
+            setCartLoading(false);
         }
     };
 
@@ -122,7 +134,7 @@ export const CartProvider = (props) => {
 
     const contextValue = {
         cart,
-        cartLoading,
+        cartLoading: cartLoading,
         getCart,
         addToCart,
         increaseQuantity,

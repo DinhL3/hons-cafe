@@ -11,8 +11,6 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dummy from "../../assets/img/dummy1.png";
 
-
-
 const CartCard = ({ drink, quantity, totalDrinkPrice }) => {
     const { name, description, price, image, _id: drinkId } = drink;
     const { increaseQuantity, decreaseQuantity, removeItem } = useContext(CartContext);
