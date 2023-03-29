@@ -1,0 +1,56 @@
+@use "src/sass/abstracts/colors";
+@use "src/sass/abstracts/mixins";
+
+.left {
+    .total {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-top: 1rem;
+        border-top: 1px solid lightgrey;
+        margin-bottom: 1rem;
+        padding-right: 1rem;
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            margin-left: 1rem;
+        }
+    }
+
+}
+
+.right {
+    padding: 1rem;
+    background-color: colors.$light-pink-1;
+    border: 2px solid colors.$light-pink-2;
+    border-radius: 1.5rem;
+
+
+    .title-block {
+        display: flex;
+        color: colors.$dark-pink-1;
+
+        svg {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .status {
+        display: flex;
+        width: 100%;
+        font-weight: 600;
+        margin-bottom: 1rem;
+
+        span {
+            margin-left: 0.5rem;
+        }
+    }
+
+    .shipping-details {
+        p {
+            margin-bottom: 0;
+        }
+    }
+}

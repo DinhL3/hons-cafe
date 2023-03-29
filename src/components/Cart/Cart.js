@@ -17,6 +17,7 @@ const Cart = () => {
     const { isExtraSmallScreen, isSmallScreen } = useContext(MediaQueryContext);
     const { user, token, isLoggedIn } = useContext(UserContext)
     const { cart, clearCart, cartLoading, getCart } = useContext(CartContext);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleClearCartClick = async () => {
         await clearCart();
@@ -24,19 +25,24 @@ const Cart = () => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            getCart()
-        }
+            getCart();
+            setIsLoading(false);
+        } else setIsLoading(false)
     }, [isLoggedIn]);
 
-    if (cartLoading) {
-        return <Spinner loading={cartLoading} />
+    if (isLoading) {
+        return <Spinner loading={isLoading} />
     }
 
-    if (!cartLoading && !user) {
-        return <Navigate to="/login" replace={true} />
+    if (!isLoading && !isLoggedIn) {
+        return (
+            <ContentWrapper flex={'flex-center'} padding="p-1">
+                <h1>Please log in to use cart</h1>
+            </ContentWrapper>
+        )
     }
 
-    if (!cartLoading && cart) {
+    if (!isLoading && cart) {
         return (
             <React.Fragment>
                 {cart.drinks.length === 0 ?

@@ -1,0 +1,39 @@
+@use "src/sass/abstracts/colors";
+@use "src/sass/abstracts/mixins";
+
+.card {
+    @include mixins.flex-between;
+    padding: 1rem;
+    border-top: 1px solid lightgrey;
+
+    .left {
+        display: flex;
+        margin-right: 1rem;
+
+
+        .image {
+            max-height: 80px;
+            object-fit: cover;
+            border-radius: 99%;
+            margin-right: 2rem;
+        }
+
+        .info {
+            min-width: 10rem;
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            p {
+                color: grey;
+            }
+        }
+    }
+
+    .right {
+        .total-drink-price {
+            font-size: 1.2rem;
+        }
+    }
+}
