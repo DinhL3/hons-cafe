@@ -15,7 +15,7 @@ import { CartContext } from '../../contexts/cart-context';
 
 const Cart = () => {
     const { isExtraSmallScreen, isSmallScreen } = useContext(MediaQueryContext);
-    const { user, token } = useContext(UserContext)
+    const { user, token, isLoggedIn } = useContext(UserContext)
     const { cart, clearCart, cartLoading, getCart } = useContext(CartContext);
 
     const handleClearCartClick = async () => {
@@ -23,10 +23,10 @@ const Cart = () => {
     };
 
     useEffect(() => {
-        if (user) {
+        if (isLoggedIn) {
             getCart()
         }
-    }, [user]);
+    }, [isLoggedIn]);
 
     if (cartLoading) {
         return <Spinner loading={cartLoading} />

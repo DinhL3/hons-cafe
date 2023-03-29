@@ -15,7 +15,7 @@ const CornerNavGroup = (props) => {
     const { isSmallScreen } = props;
     const [cartNum, setCartNum] = useState(null);
 
-    const { user } = useContext(UserContext);
+    const { user, isLoggedIn } = useContext(UserContext);
     const { cart, getCart, cartLoading } = useContext(CartContext);
 
     let userButtonText;
@@ -28,13 +28,13 @@ const CornerNavGroup = (props) => {
     }
 
     useEffect(() => {
-        if (cart) {
+        if (isLoggedIn && cart) {
             setCartNum(cart.drinks.length)
         }
-        if (!cart) {
+        if (!isLoggedIn) {
             setCartNum(null)
         }
-    }, [cart]);
+    }, [isLoggedIn, cart]);
 
     return (
         <div className={`${styles['corner-nav-group']} ${isSmallScreen ? styles.small : ''}`}>

@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const UserContext = createContext({
     user: null,
+    isLoggedIn: false,
     isLoading: false,
     errorMessage: "",
     fetchUser: () => { },
@@ -13,11 +14,12 @@ export const UserContext = createContext({
 
 const UserProvider = (props) => {
     const [user, setUser] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     const [token, setToken] = useState(localStorage.getItem("token"))
 
-    const fetchUser = async (token) => {
+    const fetchUser = async () => {
         try {
             const response = await axios.get("http://localhost:5000/api/users/me", {
                 headers: {
@@ -25,9 +27,11 @@ const UserProvider = (props) => {
                 },
             });
             setUser(response.data);
+            setIsLoggedIn(true);
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
+            setIsLoggedIn(false);
             setToken(null)
             if (error.response && error.response.data) {
                 setErrorMessage(error.response.data.message);
@@ -39,12 +43,12 @@ const UserProvider = (props) => {
 
     useEffect(() => {
         if (token) {
-            fetchUser(token);
+            fetchUser();
         }
         if (!token) {
             setIsLoading(false);
         }
-    }, [token]);
+    }, []);
 
     const registerUser = async (userName, email, password) => {
         try {
@@ -91,21 +95,23 @@ const UserProvider = (props) => {
 
     const logoutUser = () => {
         setUser(null);
-        setToken(null)
+        setToken(null);
+        setIsLoggedIn(false);
         localStorage.removeItem("token");
         setIsLoading(false);
     };
 
     const userContextValue = {
-        user,
-        token,
-        isLoading,
+        user: user,
+        token: token,
+        isLoading: isLoading,
         errorMessage,
         registerUser,
         fetchUser,
         loginUser,
         logoutUser,
         setErrorMessage,
+        isLoggedIn: isLoggedIn,
     };
 
     return (

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, Navigate } from "react-router-dom";
 import axios from 'axios';
 
 import Button from "../UI/Button/Button";
@@ -7,13 +6,16 @@ import Spinner from '../UI/Spinner/Spinner';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContentWrapper from '../UI/Wrapper/ContentWrapper';
 
+import OrderCard from './OrderCard';
+
 import { UserContext } from '../../contexts/user-context';
 
 
 const Profile = () => {
     const [orders, setOrders] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const { logoutUser, user, token, isLoading } = useContext(UserContext);
+    const { logoutUser, user, token } = useContext(UserContext);
 
     const getOrders = async () => {
         try {
@@ -29,13 +31,11 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        const loadPage = () => {
-            if (user) {
-                getOrders();
-            }
-        };
-        loadPage();
-    }, [])
+        if (user) {
+            getOrders();
+        }
+        setIsLoading(false);
+    }, [user])
 
     if (isLoading) {
         return <Spinner loading={!isLoading} />;
@@ -53,13 +53,16 @@ const Profile = () => {
         return (
             <React.Fragment>
                 <ContentWrapper flex={'flex-between'} padding="p-1">
-                    <h1>Your order history</h1>
+                    <h1>Order history</h1>
                     <Button type="button" className="light text-and-icon" onClick={logoutUser}>
                         <LogoutIcon />Log out
                     </Button>
                 </ContentWrapper>
-                <ContentWrapper padding="p-1">
+                <ContentWrapper flex="flex-center">
                     {orders.length === 0 ? <p>You don't have any orders</p> : ""}
+                    {orders.slice().reverse().map(order => (
+                        <OrderCard key={order.id} order={order} />
+                    ))}
                 </ContentWrapper>
 
             </React.Fragment>
