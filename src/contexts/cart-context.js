@@ -29,6 +29,7 @@ export const CartProvider = (props) => {
     };
 
     const addToCart = async (drinkId) => {
+        setCartLoading(true);
         try {
             const response = await axios.post(
                 `${baseUrl}/cart/add-to-cart`,
@@ -41,8 +42,10 @@ export const CartProvider = (props) => {
             );
 
             setCart(response.data.cart);
+            setCartLoading(false);
         } catch (error) {
             console.log(error);
+            setCartLoading(false);
         }
     };
 

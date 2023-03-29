@@ -48,13 +48,12 @@
         top: 80%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: colors.$dark-pink-1;
-        color: white;
+        background-color: white;
+        color: colors.$dark-pink-1;
         padding: 10px;
         border-radius: 10px;
-        font-size: 0.8rem;
+        font-size: 1rem;
         text-align: center;
         z-index: 1;
     }
-
 }
