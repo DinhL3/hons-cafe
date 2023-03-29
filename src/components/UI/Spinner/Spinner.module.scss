@@ -1,0 +1,8 @@
+@use "src/sass/abstracts/mixins";
+
+.wrapper {
+    padding: 1rem 0;
+    @include mixins.flex-center;
+    min-width: 100vw;
+    overflow-y: hidden;
+}

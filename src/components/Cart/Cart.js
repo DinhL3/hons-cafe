@@ -12,7 +12,6 @@ import PayPalCheckoutButton from '../PayPal/PayPalCheckoutButton';
 import { MediaQueryContext } from '../../contexts/media-query-context';
 import { UserContext } from '../../contexts/user-context';
 import { CartContext } from '../../contexts/cart-context';
-import { style } from '@mui/system';
 
 const Cart = () => {
     const { isExtraSmallScreen, isSmallScreen } = useContext(MediaQueryContext);
@@ -55,7 +54,7 @@ const Cart = () => {
 
         return (
             <React.Fragment>
-                {cartLoading && <div className={styles.blocker}></div>}
+                {cartLoading && <div className={styles.blocker}><Spinner loading={cartLoading} /></div>}
                 <ContentWrapper theme="light-pink" flex={isSmallScreen ? 'flex-center-column' : 'flex-between'} padding={isExtraSmallScreen ? "p-top-1" : "p-1"}>
                     <div className={styles['drinks-list']}>
                         <h1>Your cart</h1>
